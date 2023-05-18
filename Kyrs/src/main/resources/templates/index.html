@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>Экомаркет - здоровое питание</title>
+  <style>
+    /* Общие стили */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    /* Шапка сайта */
+    header {
+      background-color: #FEBD69;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo a {
+      font-size: 32px;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav li {
+      margin-left: 20px;
+    }
+
+    nav a:hover {
+      color: #ca944e;
+    }
+
+    /* Описание компании */
+    .company-info {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    /* Блок товаров */
+    .products {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .product-item {
+      width: 250px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-right: 20px;
+      margin-bottom: 20px;
+    }
+
+    .product-item img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .product-item h3 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .product-item p {
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #FEBD69;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ca944e;
+    }
+
+    /* Футер */
+    footer {
+      background-color: #F7F7F7;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+
+    footer li {
+      margin-right: 20px;
+    }
+
+    footer a {
+      color: #555;
+      text-decoration: none;
+    }
+
+    footer p {
+      font-size: 18px;
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    form {
+      padding: 20px;
+    }
+
+    input[type="number"] {
+      width: 80px;
+      padding: 5px;
+      border: 1px solid #A0A0A0;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button[type="submit"] {
+      background-color: #FFA500;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">
+      <a href="#">Экомаркет</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="http://localhost:8080/index">Главная</a></li>
+        <li><a href="http://localhost:8080/cart">Корзина</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="container">
+    <div class="company-info">
+      <h1>Экомаркет - здоровое питание для всей семьи</h1>
+      <p>В нашем магазине вы найдете экологически чистые продукты с высокими показателями качества. Мы уважаем своих
+        клиентов и стремимся предложить только самое лучшее!</p>
+    </div>
+    <div class="products">
+      <div class="product-item" th:each="account : ${accounts}">
+        <h3><span th:text="${account.name}"></span></h3>
+        <h3>Цена: <span th:text="${account.price}"></span>₽</h3>
+        <form method="POST" action="/cart/add">
+          <input type="hidden" name="product_id" th:value="${account.id}">
+          <input type="number" name="quantity" value="1">
+          <button type="submit">Добавить в корзину</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <ul>
+        <li><a href="#">Евстигнеев Н.В</a></li>
+      </ul>
+      <p>&copy; 2023 Курсовая работа</p>
+    </div>
+  </footer>
+</body>
+
+</html>
